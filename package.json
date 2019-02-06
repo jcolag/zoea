@@ -1,0 +1,19 @@
+{
+  "name": "zoea",
+  "version": "1.0.0",
+  "description": "Experimental desktop Scuttlebutt client",
+  "main": "zoea.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcolag/zoea.git"
+  },
+  "author": "John Colagioia",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/jcolag/zoea/issues"
+  },
+  "homepage": "https://github.com/jcolag/zoea#readme"
+}
