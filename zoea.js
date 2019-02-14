@@ -1,17 +1,22 @@
-import React, { Component } from 'react'; // import from react
+import React, { Component } from 'react';
+import { render, Window, App, Grid } from 'proton-native';
 
-import { render, Window, App } from 'proton-native'; // import the proton-native components
-
-class Example extends Component {
-  render() { // all Components must have a render method
+class MainWindow extends Component {
+  render() {
     return (
-      <App> // you must always include App around everything
-        <Window title="Proton Native Rocks!" size={{w: 300, h: 300}} menuBar={false}>
-            {/* all your other components go here*/}
+      <App>
+        <Window
+          title="Zoea Scuttlebutt Client"
+          size={{ w: 1300, h: 800 }}
+          menuBar={true}
+          margined
+          >
+            <Grid padded={true}>
+            </Grid>
         </Window>
       </App>
     );
   }
 }
 
-render(<Example />); // and finally render your main component
+render(<MainWindow />);
