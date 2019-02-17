@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { render, Area, Form, StyledText, Text } from 'proton-native';
+import { render, StyledText } from 'proton-native';
 
 export default class Message extends Component {
   constructor(props) {
