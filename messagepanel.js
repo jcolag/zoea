@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { render, Box, StyledText, Text } from 'proton-native';
+import {
+  Box,
+  Text,
+  render,
+} from 'proton-native';
 import Message from './message';
 
 export default class MessagePanel extends Component {
