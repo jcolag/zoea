@@ -52,7 +52,6 @@ export default class Markdown extends Component {
         break;
       }
 
-      console.log(`${target}: ${indexPrev} -> ${index} -> ${indexNext}`);
       parts.push(text.substring(indexPrev, index));
       parts.push(
         this.convert(
