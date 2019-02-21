@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { render, StyledText } from 'proton-native';
 import {
+  Box,
   StyledText,
   render,
 } from 'proton-native';
+import Markdown from './markdown';
 
 export default class Message extends Component {
   constructor(props) {
@@ -15,14 +16,14 @@ export default class Message extends Component {
 
   render() {
     return (
-        <StyledText
-          style={{
-            fontSize: 20,
-            fontWeight: 'normal',
+        <Box
+          span={{
+            x: 3,
+            y: 1,
           }}
         >
-          {this.state.message}
-        </StyledText>
+          <Markdown text={this.state.message} />
+        </Box>
     );
   }
 }
