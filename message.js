@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   Box,
+  Grid,
   StyledText,
   render,
 } from 'proton-native';
@@ -16,7 +17,10 @@ export default class Message extends Component {
 
   render() {
     return (
+      <Grid padded={true}>
         <Box
+          column={0}
+          row={1}
           span={{
             x: 3,
             y: 1,
@@ -24,6 +28,7 @@ export default class Message extends Component {
         >
           <Markdown text={this.state.message} />
         </Box>
+      </Grid>
     );
   }
 }
