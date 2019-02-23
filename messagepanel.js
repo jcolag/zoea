@@ -19,7 +19,12 @@ export default class MessagePanel extends Component {
   render() {
     const msgs = [];
     this.state.messages.forEach(m =>
-      msgs.push(<Message markdown={m} key={msgs.length} />)
+      msgs.push(<Message
+      	key={msgs.length}
+      	markdown={m.contents}
+      	user={m.author}
+      	ts={m.ts.toString()}
+      />)
     );
     return (
       <Box row={this.state.row} column={this.state.column}>
