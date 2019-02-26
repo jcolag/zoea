@@ -22,6 +22,22 @@ export default class Markdown extends Component {
     let italicStyle = {
       fontStyle: 'italic',
     };
+    let sizes = [ 11, 16, 16, 14, 14, 12, 12 ];
+    let hn = 0;
+    
+    if (style === null && text[0] === '#') {
+      while (text[0] === '#') {
+        hn += 1;
+        text = text.substring(1);
+      }
+      
+      return this.convert(
+        text.trim(),
+        {
+          fontWeight: hn % 2 === 0 ? 'normal' : 'bold',
+          fontSize: sizes[hn],
+        });
+    }
     
     while (index >= 0 && index < text.length) {
       let match = text
@@ -85,6 +101,7 @@ export default class Markdown extends Component {
       <StyledText
         style={{
           fontWeight: 'normal',
+          fontSize: 11,
         }}
       >
         {this.convert(this.state.message)}
