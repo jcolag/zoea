@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   Box,
   Grid,
+  Separator,
   StyledText,
   Text,
   render,
@@ -49,6 +50,12 @@ export default class Message extends Component {
         >
           <Markdown text={this.state.message} />
         </Box>
+        <Separator
+          column={0}
+          row={3}
+          vertical={false}
+          visible={true}
+        />
       </Grid>
     );
   }
