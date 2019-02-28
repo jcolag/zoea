@@ -9,6 +9,8 @@ import {
 } from 'proton-native';
 import Markdown from './markdown';
 
+const LineLength = 125;
+
 export default class Message extends Component {
   constructor(props) {
     super(props);
@@ -49,6 +51,54 @@ export default class Message extends Component {
     }
     
     return width;
+  }
+  
+  wrapMessage(text) {
+    const messages = [];
+    
+    text.split('\n').forEach(line =>
+    {
+      let remain = line;
+      let sub = '';
+      let sublen = 0;
+      
+      while (remain.length > 0) {
+        let space = remain.search(/\s/);
+
+        // Orphan Word
+        if (sub.length == 0 && space < 0) {
+          messages.push(<Markdown text={remain} key={this.uuidv4()} />);
+          remain = '';
+          continue;
+        }
+        
+        let word = space < 0
+          ? remain
+          : remain.substring(0, space + 1);
+        
+        if (sublen + this.textWidth(word) > LineLength || space < 0) {
+          // End of the line
+          if (word === remain) {
+            sub = `${sub}${word}`;
+            remain = '';
+          }
+
+          // Reset
+          messages.push(<Markdown
+            text={sub}
+          />);
+          sub = '';
+          sublen = 0;
+          continue;
+        }
+
+        // Shift the word over
+        sub = `${sub}${word}`;
+        sublen += this.textWidth(word);
+        remain = remain.substring(space + 1);
+      }
+    });
+    return messages;
   }
 
   render() {
