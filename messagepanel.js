@@ -28,11 +28,6 @@ export default class MessagePanel extends Component {
     );
     return (
       <Box row={this.state.row} column={this.state.column}>
-        {/* This is stupid, but apparently needed to set a non-zero */}
-        {/* width for the StyledText elements in the Messages. */}
-        <Text>
-           {'                                                                                                                                                                                                                                                                       '}
-        </Text>
         {msgs}
       </Box>
     );
