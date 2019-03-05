@@ -6,9 +6,12 @@ import {
   Window,
   render,
 } from 'proton-native';
+import MessagePanel from './messagepanel';
 
 class MainWindow extends Component {
   render() {
+    const messages = [
+    ];
     return (
       <App>
         <Window
@@ -18,6 +21,7 @@ class MainWindow extends Component {
           margined
           >
             <Grid padded={true}>
+              <MessagePanel row={0} column={2} messages={messages} />
             </Grid>
         </Window>
       </App>
