@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { render, Window, App, Grid } from 'proton-native';
 import {
   App,
   Grid,
