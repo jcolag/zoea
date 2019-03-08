@@ -5,11 +5,14 @@ import {
   Window,
   render,
 } from 'proton-native';
+import Sidebar from './sidebar';
 import MessagePanel from './messagepanel';
 
 class MainWindow extends Component {
   render() {
     const messages = [
+    ];
+    const sideElements = [
     ];
     return (
       <App>
@@ -20,6 +23,7 @@ class MainWindow extends Component {
           margined
           >
             <Grid padded={true}>
+              <Sidebar row={0} column={0} items={sideElements} />
               <MessagePanel row={0} column={2} messages={messages} />
             </Grid>
         </Window>
