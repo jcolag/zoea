@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   App,
   Grid,
+  Separator,
   Window,
   render,
 } from 'proton-native';
@@ -24,6 +25,7 @@ class MainWindow extends Component {
           >
             <Grid padded={true}>
               <Sidebar row={0} column={0} items={sideElements} />
+              <Separator row={0} column={1} />
               <MessagePanel row={0} column={2} messages={messages} />
             </Grid>
         </Window>
