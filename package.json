@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/jcolag/zoea#readme",
   "dependencies": {
-    "proton-native": "latest"
+    "proton-native": "^1.1.11",
+    "ssb-server": "^14.1.6"
   },
   "devDependencies": {
     "electron-builder": "latest",
