@@ -9,6 +9,9 @@ import {
 import Sidebar from './sidebar';
 import MessagePanel from './messagepanel';
 
+const ssbClient = require('ssb-client');
+const pull = require('pull-stream');
+
 class MainWindow extends Component {
   render() {
     const messages = [
