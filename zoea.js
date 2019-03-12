@@ -13,11 +13,18 @@ const ssbClient = require('ssb-client');
 const pull = require('pull-stream');
 
 class MainWindow extends Component {
-  render() {
-    const messages = [
-    ];
+  constructor(props) {
+    super(props);
+    this.state = {
+      messages: [],
+      sideElements: [],
+    }
+  }
+  
     const sideElements = [
     ];
+  
+  render() {
     return (
       <App>
         <Window
