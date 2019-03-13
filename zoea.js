@@ -34,9 +34,13 @@ class MainWindow extends Component {
           margined
           >
             <Grid padded={true}>
-              <Sidebar row={0} column={0} items={sideElements} />
+              <Sidebar row={0} column={0} items={this.state.sideElements} />
               <Separator row={0} column={1} />
-              <MessagePanel row={0} column={2} messages={messages} />
+              <MessagePanel
+                row={0}
+                column={2}
+                messages={this.state.messages}
+                />
             </Grid>
         </Window>
       </App>
