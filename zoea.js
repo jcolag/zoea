@@ -15,14 +15,26 @@ const pull = require('pull-stream');
 class MainWindow extends Component {
   constructor(props) {
     super(props);
+    const timeoutId = setTimeout(this.stubData, 500, this);
     this.state = {
       messages: [],
       sideElements: [],
+      timeoutId,
     }
   }
   
+  stubData(who) {
+    const messages = [];
     const sideElements = [
     ];
+    
+    clearTimeout(who.state.timeoutId);
+          who.setState({
+            messages,
+            sideElements,
+            timeoutId: null,
+          });
+  }
   
   render() {
     return (
