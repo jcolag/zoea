@@ -37,6 +37,9 @@ class MainWindow extends Component {
   }
   
   render() {
+    if (this.state.messages.length === 0) {
+      return null;
+    }
     return (
       <App>
         <Window
