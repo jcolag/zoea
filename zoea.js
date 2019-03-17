@@ -29,11 +29,41 @@ class MainWindow extends Component {
     ];
     
     clearTimeout(who.state.timeoutId);
+    ssbClient(function (err, sbot) {
+      let scutId;
+      if (err) {
+        throw err;
+      }
+
+      sbot.whoami(function(err, info) {
+        const stream = sbot.createUserStream({
+          id: info.id,
+        });
+        pull (stream, pull.collect((err, msgs) => {
+          if (err) {
+            sbot.close();
+            throw err;
+          }
+          msgs.forEach(m => {
+            if (m.value.content.type !== 'post') {
+              return;
+            }
+            messages.push({
+              author: m.value.author,
+              contents: m.value.content.text,
+              ts: new Date(m.value.timestamp),
+            });
+          });
+          messages.reverse();
           who.setState({
             messages,
             sideElements,
             timeoutId: null,
           });
+          sbot.close();
+        }));
+      });
+    });
   }
   
   render() {
