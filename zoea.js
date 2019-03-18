@@ -17,8 +17,10 @@ class MainWindow extends Component {
     super(props);
     const timeoutId = setTimeout(this.stubData, 500, this);
     this.state = {
+      endIdx: 4,
       messages: [],
       sideElements: [],
+      startIdx: 0,
       timeoutId,
     }
   }
@@ -84,7 +86,10 @@ class MainWindow extends Component {
               <MessagePanel
                 row={0}
                 column={2}
-                messages={this.state.messages}
+                messages={this.state.messages.slice(
+                  this.state.startIdx,
+                  this.state.endIdx
+                )}
                 />
             </Grid>
         </Window>
