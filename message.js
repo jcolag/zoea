@@ -143,7 +143,7 @@ export default class Message extends Component {
             {/* For some reason, StyledText refuses to have a */}
             {/* width without some other component...padding */}
             {/* the parent? Modeling proper behavior? */}
-            {new Array(LineLength * 2 + 1).join(' ')}
+            {new Array(LineLength * 3 + 1).join(' ')}
           </Text>
         </Box>
         <Separator
