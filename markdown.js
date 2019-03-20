@@ -12,6 +12,13 @@ export default class Markdown extends Component {
     }
   }
   
+  uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+
   convert(text, style = null) {
     const parts = [];
     let index = 0;
@@ -87,7 +94,7 @@ export default class Markdown extends Component {
     } else {
       return (
         <StyledText
-          key={`${Date.now()}${parts.length}${text[indexPrev]}`}
+          key={this.uuidv4()}
           style={style}
         >
           {parts}
