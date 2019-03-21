@@ -29,6 +29,7 @@ export default class Markdown extends Component {
     let italicStyle = {
       fontStyle: 'italic',
     };
+    let codeStyle = {};
     let sizes = [ 11, 16, 16, 14, 14, 12, 12 ];
     let hn = 0;
     
@@ -49,7 +50,7 @@ export default class Markdown extends Component {
     while (index >= 0 && index < text.length) {
       let match = text
         .slice(index)
-        .match(/[_\*]/);
+        .match(/[_\*`]/);
       if (!match) {
         parts.push(text.substring(index));
         break;
@@ -57,14 +58,17 @@ export default class Markdown extends Component {
       
       indexPrev = index;
       index = text.indexOf(match[0], index);
+      let newStyle = italicStyle;
       let target = text[index];
       let tlen = 1;
-      let newStyle = italicStyle;
-      
-      if (text[index + 1] === text[index]) {
-        target = `${text[index]}${text[index]}`;
-        tlen = 2;
-        newStyle = boldStyle;
+ 
+      if (match[0] === '`') {
+        newStyle = codeStyle;
+      } else if (text[index + 1] === text[index]) {
+          target = `${text[index]}${text[index]}`;
+          tlen = 2;
+          newStyle = boldStyle;
+        }
       }
 
       const indexNext = text
