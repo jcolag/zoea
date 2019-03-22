@@ -60,7 +60,7 @@ export default class Message extends Component {
     return width;
   }
   
-  wrapMessage(text) {
+  wrapMessage(text, indent) {
     const messages = [];
     
     text.split('\n').forEach(line =>
@@ -138,7 +138,7 @@ export default class Message extends Component {
             y: 1,
           }}
         >
-          {this.wrapMessage(this.state.message)}
+          {this.wrapMessage(this.state.message, 0)}
           <Text>
             {/* For some reason, StyledText refuses to have a */}
             {/* width without some other component...padding */}
