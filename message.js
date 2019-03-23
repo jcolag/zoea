@@ -62,12 +62,14 @@ export default class Message extends Component {
   
   wrapMessage(text, indent) {
     const messages = [];
+    const spacer = new Array(indent * 4).join(' ');
+    const slen = textWidth(spacer);
     
     text.split('\n').forEach(line =>
     {
       let remain = line;
-      let sub = '';
-      let sublen = 0;
+      let sub = spacer;
+      let sublen = slen;
       
       while (remain.length > 0) {
         let space = remain.search(/\s/);
