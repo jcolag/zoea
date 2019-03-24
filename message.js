@@ -75,7 +75,7 @@ export default class Message extends Component {
         let space = remain.search(/\s/);
 
         // Orphan Word
-        if (sub.length == 0 && space < 0) {
+        if (sub.length == slen && space < 0) {
           messages.push(<Markdown text={remain} key={this.uuidv4()} />);
           remain = '';
           continue;
@@ -97,8 +97,8 @@ export default class Message extends Component {
             text={sub}
             key={this.uuidv4()}
           />);
-          sub = '';
-          sublen = 0;
+          sub = spacer;
+          sublen = slen;
           continue;
         }
 
