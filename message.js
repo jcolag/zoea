@@ -71,6 +71,12 @@ export default class Message extends Component {
       let sub = spacer;
       let sublen = slen;
       
+      if (remain.trim().indexOf('>') === 0) {
+        lines = wrapMessage(remain.substring(1), indent + 2);
+        messages.concat(lines);
+        continue;
+      }
+    
       while (remain.length > 0) {
         let space = remain.search(/\s/);
 
