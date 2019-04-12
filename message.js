@@ -74,7 +74,7 @@ export default class Message extends Component {
       if (remain.trim().indexOf('>') === 0) {
         lines = wrapMessage(remain.substring(1), indent + 2);
         messages.concat(lines);
-        continue;
+        return;
       }
     
       while (remain.length > 0) {
