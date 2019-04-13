@@ -51,6 +51,8 @@ export default class Markdown extends Component {
       let match = text
         .slice(index)
         .match(/[_\*`]/);
+      let exit = false;
+
       if (!match) {
         parts.push(text.substring(index));
         break;
@@ -65,20 +67,21 @@ export default class Markdown extends Component {
       if (match[0] === '`') {
         newStyle = codeStyle;
       } else if (text[index + 1] === text[index]) {
-          target = `${text[index]}${text[index]}`;
-          tlen = 2;
-          newStyle = boldStyle;
-        }
+        target = `${text[index]}${text[index]}`;
+        tlen = 2;
+        newStyle = boldStyle;
       }
+    }
 
-      const indexNext = text
-        .indexOf(target, index + tlen);
+    const indexNext = text
+      .indexOf(target, index + tlen);
       
-      if (indexNext < 0) {
-        parts.push(text.slice(index));
-        break;
-      }
+    if (indexNext < 0) {
+      parts.push(text.slice(index));
+      exit = true;
+    }
 
+    if (!exit) {
       parts.push(text.substring(indexPrev, index));
       parts.push(
         this.convert(
@@ -91,19 +94,18 @@ export default class Markdown extends Component {
       );
       
       index = indexNext + tlen;
-    }
-    
-    if (style == null) {
-      return parts;
-    } else {
-      return (
-        <StyledText
-          key={this.uuidv4()}
-          style={style}
-        >
-          {parts}
-        </StyledText>
-      );
+      if (style === null) {
+        return parts;
+      } else {
+        return (
+          <StyledText
+            key={this.uuidv4()}
+            style={style}
+          >
+            {parts}
+          </StyledText>
+        );
+      }
     }
   }
 
