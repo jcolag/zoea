@@ -63,7 +63,7 @@ export default class Message extends Component {
   wrapMessage(text, indent) {
     const messages = [];
     const spacer = new Array(indent * 4).join(' ');
-    const slen = textWidth(spacer);
+    const slen = this.textWidth(spacer);
     
     text.split('\n').forEach(line =>
     {
