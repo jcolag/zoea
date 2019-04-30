@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import {
-  App,
-  Grid,
-  Separator,
-  Window,
-  render,
-} from 'proton-native';
-import Sidebar from './sidebar';
-import MessagePanel from './messagepanel';
+import gui from 'gui';
+import { render } from 'react-yue';
+//import {
+//  App,
+//  Grid,
+//  Separator,
+//  Window,
+//  render,
+//} from 'proton-native';
+//import Sidebar from './sidebar';
+//import MessagePanel from './messagepanel';
 
 const ssbClient = require('ssb-client');
 const pull = require('pull-stream');
@@ -28,6 +30,7 @@ class MainWindow extends Component {
   stubData(who) {
     const messages = [];
     const sideElements = [
+      "Sidebar",
     ];
     
     clearTimeout(who.state.timeoutId);
@@ -69,37 +72,90 @@ class MainWindow extends Component {
   }
   
   render() {
-    if (this.state.messages.length === 0) {
-      return null;
-    }
+//    if (this.state.messages.length === 0) {
+//      return null;
+//    }
+
     return (
-      <App>
-        <Window
-          title="Zoea Scuttlebutt Client"
-          size={{ w: 1300, h: 800 }}
-          menuBar={true}
-          margined
-          >
-            <Grid padded={true}>
-              <Sidebar
-                row={0}
-                column={0}
-                items={this.state.sideElements}
-                />
-              <Separator row={0} column={1} />
-              <MessagePanel
-                row={0}
-                column={2}
-                messages={this.state.messages.slice(
-                  this.state.startIdx,
-                  this.state.endIdx
-                )}
-                />
-            </Grid>
-        </Window>
-      </App>
+      <container
+        style={{
+          flexDirection: 'row',
+          flex: 1,
+        }}
+      >
+        <container
+          style={{
+            alignItems: 'flex-start',
+            backgroundColor: '#808080',
+            color: '#000000',
+            flex: 1,
+            flexDirection: 'ltr',
+            justifyContent: 'flex-start',
+            width: 200,
+          }}
+        >
+          <label
+            text="   Sidebar"
+            font={
+              gui.Font.default().derive(14, 'bold', 'normal')
+            }
+          />
+          <label
+            text="a"
+          />
+          <label
+            text="b"
+          />
+          <label
+            text="c"
+          />
+        </container>
+        <container
+          style={{
+            flexDirection: 'column',
+            flex: 3,
+          }}
+        >
+          <label
+            text="Messages"
+            font={
+              gui.Font.default().derive(14, 'bold', 'normal')
+            }
+          />
+          <label
+            text="2!"
+          />
+          <label
+            text="3!"
+          />
+          <label
+            text="4!"
+          />
+        </container>
+      </container>
     );
   }
 }
 
-render(<MainWindow />);
+//render(<MainWindow />);
+const win = gui.Window.create({
+  frame: true,
+  showTrafficLights: true,
+});
+const contentView = gui.Container.create();
+
+contentView.setStyle({ flexDirection: 'row' });
+win.setContentSize({
+  width: 1300,
+  height: 800,
+});
+win.setTitle('Zoea');
+win.setContentView(contentView);
+win.center();
+win.activate();
+render(<MainWindow />, contentView);
+if (!process.versions.yode) {
+  gui.MessageLoop.run();
+  process.exit(0);
+}
+
