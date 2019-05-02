@@ -149,6 +149,7 @@ win.setContentSize({
   width: 1300,
   height: 800,
 });
+win.onClose = () => gui.MessageLoop.quit();
 win.setTitle('Zoea');
 win.setContentView(contentView);
 win.center();
