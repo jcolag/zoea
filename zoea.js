@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
 import gui from 'gui';
 import { render } from 'react-yue';
-//import {
-//  App,
-//  Grid,
-//  Separator,
-//  Window,
-//  render,
-//} from 'proton-native';
 //import Sidebar from './sidebar';
 //import MessagePanel from './messagepanel';
 
@@ -137,7 +130,6 @@ class MainWindow extends Component {
   }
 }
 
-//render(<MainWindow />);
 const win = gui.Window.create({
   frame: true,
   showTrafficLights: true,
