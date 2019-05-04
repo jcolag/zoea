@@ -130,6 +130,31 @@ class MainWindow extends Component {
   }
 }
 
+const menu = gui.MenuBar.create([
+  {
+    label: 'File',
+    submenu: [
+      {
+        label: 'Quit',
+        accelerator: 'CmdOrCtrl+Q',
+        onClick: () => gui.MessageLoop.quit()
+      },
+    ],
+  },
+  {
+    label: 'Edit',
+    submenu: [
+      { role: 'cut' },
+      { role: 'copy' },
+      { role: 'paste' },
+      { role: 'select-all' },
+      { type: 'separator' },
+      { role: 'undo' },
+      { role: 'redo' },
+    ],
+  },
+]);
+
 const win = gui.Window.create({
   frame: true,
   showTrafficLights: true,
@@ -144,6 +169,11 @@ win.setContentSize({
 win.onClose = () => gui.MessageLoop.quit();
 win.setTitle('Zoea');
 win.setContentView(contentView);
+if (process.platform == 'darwin') {
+  gui.app.setApplicationMenu(menu);
+} else {
+  win.setMenuBar(menu);
+}
 win.center();
 win.activate();
 render(<MainWindow />, contentView);
