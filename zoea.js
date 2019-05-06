@@ -3,6 +3,7 @@ import gui from 'gui';
 import { render } from 'react-yue';
 //import Sidebar from './sidebar';
 //import MessagePanel from './messagepanel';
+import { alert } from './dialog';
 
 const ssbClient = require('ssb-client');
 const pull = require('pull-stream');
@@ -30,6 +31,7 @@ class MainWindow extends Component {
     ssbClient(function (err, sbot) {
       let scutId;
       if (err) {
+        alert(err, "SSB Client Error");
         throw err;
       }
 
@@ -39,6 +41,7 @@ class MainWindow extends Component {
         });
         pull (stream, pull.collect((err, msgs) => {
           if (err) {
+            alert(err, "SSB Client Error");
             sbot.close();
             throw err;
           }
