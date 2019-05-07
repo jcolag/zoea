@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
-import {
-  Box,
-  Grid,
-  Separator,
-  StyledText,
-  Text,
-  render,
-} from 'proton-native';
+import gui from 'gui';
+import { render } from 'react-yue';
 import Markdown from './markdown';
 
 const LineLength = 125;
@@ -118,49 +112,21 @@ export default class Message extends Component {
   }
 
   render() {
+    console.log(this.state.message);
     return (
-      <Grid>
-        <Text
-          column={0}
-          row={0}
-          >
-          {this.state.username}
-        </Text>
-        <Text
-          column={1}
-          row={0}
-          >
-          {new Array(25).join(' ')}
-        </Text>
-        <Text
-          column={2}
-          row={0}
-          >
-          {this.state.timestamp}
-        </Text>
-        <Box
-          column={0}
-          row={1}
-          span={{
-            x: 3,
-            y: 1,
-          }}
-        >
-          {this.wrapMessage(this.state.message, 0)}
-          <Text>
-            {/* For some reason, StyledText refuses to have a */}
-            {/* width without some other component...padding */}
-            {/* the parent? Modeling proper behavior? */}
-            {new Array(LineLength * 3 + 1).join(' ')}
-          </Text>
-        </Box>
-        <Separator
-          column={0}
-          row={3}
-          vertical={false}
-          visible={true}
+      <container
+        style={{
+          alignItems: 'flex-start',
+          backgroundColor: '#000080',
+          color: '#FFFFFF',
+          flex: 1,
+          height: '100px',
+        }}
+      >
+        <label
+          text={this.state.message}
         />
-      </Grid>
+      </container>
     );
   }
 }
