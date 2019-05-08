@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import {
-  Box,
-  Text,
-  render,
-} from 'proton-native';
+import gui from 'gui';
+import { render } from 'react-yue';
 import Message from './message';
 
 export default class MessagePanel extends Component {
@@ -19,17 +16,31 @@ export default class MessagePanel extends Component {
   render() {
     const msgs = [];
     this.state.messages.forEach(m =>
-      msgs.push(<Message
-      	key={msgs.length}
-      	markdown={m.contents}
-      	user={m.author}
-      	ts={m.ts.toString()}
-      />)
+      msgs.push(
+        <Message
+      	  key={msgs.length}
+      	  markdown={m.contents}
+      	  user={m.author}
+      	  ts={m.ts.toString()}
+        />
+      )
     );
     return (
-      <Box row={this.state.row} column={this.state.column}>
-        {msgs}
-      </Box>
+      <scroll
+        style={{
+          flexDirection: 'column',
+          flex: 1,
+        }}
+      >
+        <container
+          style={{
+            flexDirection: 'column',
+            flex: 1,
+          }}
+        >
+          {msgs}
+        </container>
+      </scroll>
     );
   }
 }
