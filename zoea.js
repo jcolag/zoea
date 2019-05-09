@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import gui from 'gui';
 import { render } from 'react-yue';
 //import Sidebar from './sidebar';
-//import MessagePanel from './messagepanel';
+import MessagePanel from './messagepanel';
 import { alert } from './dialog';
 
 const ssbClient = require('ssb-client');
@@ -118,14 +118,8 @@ class MainWindow extends Component {
               gui.Font.default().derive(14, 'bold', 'normal')
             }
           />
-          <label
-            text="2!"
-          />
-          <label
-            text="3!"
-          />
-          <label
-            text="4!"
+          <MessagePanel
+            messages={msgs}
           />
         </container>
       </container>
