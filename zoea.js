@@ -4,6 +4,7 @@ import { render } from 'react-yue';
 //import Sidebar from './sidebar';
 import MessagePanel from './messagepanel';
 import { alert } from './dialog';
+import ErrorBoundary from './errorboundary';
 
 const ssbClient = require('ssb-client');
 const pull = require('pull-stream');
@@ -73,56 +74,58 @@ class MainWindow extends Component {
 //    }
 
     return (
-      <container
-        style={{
-          flexDirection: 'row',
-          flex: 1,
-        }}
-      >
+      <ErrorBoundary>
         <container
           style={{
-            alignItems: 'flex-start',
-            backgroundColor: '#808080',
-            color: '#000000',
+            flexDirection: 'row',
             flex: 1,
-            flexDirection: 'ltr',
-            justifyContent: 'flex-start',
-            width: 200,
           }}
         >
-          <label
-            text="   Sidebar"
-            font={
-              gui.Font.default().derive(14, 'bold', 'normal')
-            }
-          />
-          <label
-            text="a"
-          />
-          <label
-            text="b"
-          />
-          <label
-            text="c"
-          />
+          <container
+            style={{
+              alignItems: 'flex-start',
+              backgroundColor: '#808080',
+              color: '#000000',
+              flex: 1,
+              flexDirection: 'ltr',
+              justifyContent: 'flex-start',
+              width: 200,
+            }}
+          >
+            <label
+              text="   Sidebar"
+              font={
+                gui.Font.default().derive(14, 'bold', 'normal')
+              }
+            />
+            <label
+              text="a"
+            />
+            <label
+              text="b"
+            />
+            <label
+              text="c"
+            />
+          </container>
+          <container
+            style={{
+              flexDirection: 'column',
+              flex: 3,
+            }}
+          >
+            <label
+              text="Messages"
+              font={
+                gui.Font.default().derive(14, 'bold', 'normal')
+              }
+            />
+            <MessagePanel
+              messages={msgs}
+            />
+          </container>
         </container>
-        <container
-          style={{
-            flexDirection: 'column',
-            flex: 3,
-          }}
-        >
-          <label
-            text="Messages"
-            font={
-              gui.Font.default().derive(14, 'bold', 'normal')
-            }
-          />
-          <MessagePanel
-            messages={msgs}
-          />
-        </container>
-      </container>
+      </ErrorBoundary>
     );
   }
 }
