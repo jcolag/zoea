@@ -1,8 +1,4 @@
 import React, { Component } from 'react';
-import {
-  StyledText,
-  render,
-} from 'proton-native';
 
 export default class Markdown extends Component {
   constructor(props) {
