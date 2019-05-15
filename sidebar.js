@@ -1,9 +1,4 @@
 import React, { Component } from 'react';
-import {
-  Box,
-  Text,
-  render,
-} from 'proton-native';
 
 export default class Sidebar extends Component {
   constructor(props) {
