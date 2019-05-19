@@ -8,6 +8,8 @@ import ErrorBoundary from './errorboundary';
 
 const spawn = require('threads').spawn;
 
+const msgs = [];
+
 class MainWindow extends Component {
   constructor(props) {
     super(props);
