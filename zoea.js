@@ -83,6 +83,50 @@ class MainWindow extends Component {
   }
 }
 
+function updateScuttlebutt(input, done) {
+  const ssbClient = require('ssb-client');
+  const pull = require('pull-stream');
+  const messages = [];
+  const sideElements = [
+    "Sidebar",
+  ];
+  
+  ssbClient(function (err, sbot) {
+    let scutId;
+
+    if (err) {
+      console.log(err);
+      return;
+    }
+
+    sbot.whoami(function(err, info) {
+      const stream = sbot.createUserStream({
+        id: info.id,
+      });
+      pull (stream, pull.collect((err, msgs) => {
+        if (err) {
+          console.log(err);
+          return;
+        }
+
+        msgs.forEach(m => {
+          if (m.value.content.type !== 'post') {
+            return;
+          }
+
+          messages.push({
+            author: m.value.author,
+            contents: m.value.content.text,
+            ts: new Date(m.value.timestamp),
+          });
+        });
+        messages.reverse();
+        sbot.close();
+      }));
+    });
+  });
+}
+
 const menu = gui.MenuBar.create([
   {
     label: 'File',
