@@ -6,7 +6,7 @@ import MessagePanel from './messagepanel';
 import { alert } from './dialog';
 import ErrorBoundary from './errorboundary';
 
-const spawn = require('threads').spawn;
+const threads = require('threads');
 
 const msgs = [];
 
